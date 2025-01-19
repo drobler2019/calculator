@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
 
 *,
 *::before,
@@ -12,6 +12,9 @@
   /*background*/
   --very-dark-violet: hsl(268deg 75% 9%);
   --very-dark-desaturated-blue: hsl(222deg 26% 31%);
+  --very-dark-blue: hsl(198, 20%, 13%);
+  --very-dark-desaturated-blue-toggle: hsl(223deg 31% 20%);
+  --red: hsl(6deg 63% 50%);
 
   /*color font*/
   --white: hsl(0deg 0% 100%);
@@ -23,4 +26,6 @@ body {
   background-color: var(--very-dark-desaturated-blue);
   color: var(--white);
   font-family: "League Spartan", serif;
+  align-content: center;
+  padding: 20px;
 }

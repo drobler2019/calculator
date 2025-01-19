@@ -1,4 +1,6 @@
+import { Theme } from './components/theme';
 import './style.css'
 const app = document.querySelector<HTMLDivElement>('#app')!;
+const themeElement = new Theme();
 
-app.innerHTML = '<h1>Cal</h1>';
+app.append(themeElement);

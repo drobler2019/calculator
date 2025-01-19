@@ -1,0 +1,51 @@
+:where(.theme, .theme-change) {
+  display: flex;
+}
+
+.theme {
+  display: flex;
+  justify-content: space-between;
+  max-inline-size: 700px;
+  margin: auto;
+}
+
+.theme-change {
+  column-gap: 1rem;
+
+  & > p {
+    align-self: end;
+  }
+
+  & .theme-change-container {
+    display: flex;
+    flex-direction: column;
+    inline-size: 90px;
+    row-gap: 0.5rem;
+    & .theme-change-value {
+      display: flex;
+      column-gap: 1.3rem;
+      justify-content: center;
+    }
+    & .theme-change-toggle {
+      position: relative;
+      block-size: 1.7rem;
+      background-color: var(--very-dark-desaturated-blue-toggle);
+      border-radius: 1rem;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+
+    & .theme-change-toggle::after {
+      --block-size: 27.2px;
+      content: "";
+      position: absolute;
+      inline-size: 20px;
+      block-size: 20px;
+      border-radius: 50%;
+      inset-block-start: calc(var(--block-size) / 6);
+      inset-inline-start: 6px;
+      transform: translateX(0);
+      background-color: var(--red);
+    }
+  }
+}
