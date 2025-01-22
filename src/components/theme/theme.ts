@@ -1,4 +1,4 @@
-import { ThemeCount } from '../util/Theme';
+import { ThemeCount } from '../../util/Theme';
 import './theme.css';
 import template from './theme.html?raw';
 

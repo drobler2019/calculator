@@ -14,11 +14,27 @@
   --very-dark-desaturated-blue: hsl(222deg 26% 31%);
   --very-dark-blue: hsl(198, 20%, 13%);
   --very-dark-desaturated-blue-toggle: hsl(223deg 31% 20%);
-  --red: hsl(6deg 63% 50%);
+  --very-dark-desaturated-blue-screen: hsl(224deg 36% 15%);
 
   /*color font*/
   --white: hsl(0deg 0% 100%);
   --very-dark-grayish-blue: hsl(221deg 14% 31%);
+
+  --max-width: 500px;
+  --border-radius: 10px;
+  --gap: 20px;
+
+  /*buttons*/
+  --desaturated-dark-blue: hsl(225deg 21% 49%);
+  --desaturated-dark-blue-shadow: hsl(224deg 28% 35%);
+  --red: hsl(6deg 63% 50%);
+  --dark-red: hsl(6deg 70% 34%);
+  --light-grayish-orange: hsl(30deg 25% 89%);
+  --grayish-orange-shadow: hsl(28deg 16% 65%);
+
+  --box-shadow: 0px 5px 1px 1px;
+
+  --spacing: 30px;
 }
 
 body {

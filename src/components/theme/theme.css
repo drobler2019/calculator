@@ -5,8 +5,11 @@
 .theme {
   display: flex;
   justify-content: space-between;
-  max-inline-size: 700px;
+  max-inline-size: var(--max-width);
   margin: auto;
+  & h1 {
+    align-self: end;
+  }
 }
 
 .theme-change {
@@ -14,6 +17,7 @@
 
   & > p {
     align-self: end;
+    font-weight: bold;
   }
 
   & .theme-change-container {
@@ -23,12 +27,13 @@
     row-gap: 0.5rem;
     & .theme-change-value {
       display: flex;
-      column-gap: 1.5rem;
+      column-gap: 1.4rem;
       justify-content: center;
+      font-weight: bold;
     }
     & .theme-change-toggle {
       position: relative;
-      block-size: 1.7rem;
+      block-size: 1.9rem;
       background-color: var(--very-dark-desaturated-blue-toggle);
       border-radius: 1rem;
       cursor: pointer;
@@ -43,7 +48,7 @@
         border-radius: 50%;
         transform: translateX(0);
         background-color: var(--red);
-        transition: transform 0.4s ease-in;
+        transition: transform 0.7s ease;
       }
     }
   }

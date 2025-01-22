@@ -1,0 +1,16 @@
+.screen {
+  max-inline-size: var(--max-width);
+  margin: auto;
+  background-color: var(--very-dark-desaturated-blue-screen);
+  border-radius: var(--border-radius);
+  block-size: 100px;
+  margin-block: var(--spacing);
+  padding-inline: 20px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  & > p {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+}
