@@ -8,12 +8,13 @@ export class Button extends HTMLElement {
     private selector = '.buttons-container > div:first-child';
     private position = 0;
     private readonly SYNTAX_ERROR = 'Syntax Error';
+    private readonly INFINITY = 'Infinity';
 
     private readonly values: string[][] = [
-        ['7', '8', '9', 'DEL'],
-        ['4', '5', '6', '+'],
-        ['1', '2', '3', '-'],
-        ['.', '0', '/', 'x']
+        ['7', '8', '9', Operation.deleteValue],
+        ['4', '5', '6', Operation.sum],
+        ['1', '2', '3', Operation.subtraction],
+        ['.', '0', Operation.division, Operation.multiplication]
     ];
 
     constructor(private screen: Screen) {
@@ -34,16 +35,12 @@ export class Button extends HTMLElement {
         send.addEventListener('click', this);
     }
 
-    handleEvent(event: MouseEvent): void {
-        const element = event.target as HTMLElement;
+    handleEvent({ target }: MouseEvent): void {
+        const element = target as HTMLElement;
         if (element.nodeName === 'BUTTON' || element.nodeName === 'P') {
-            let value = '';
-            if (element.nodeName === 'BUTTON') {
-                value = element.firstChild!.textContent!;
-            } else {
-                value = element.textContent!;
-            }
-            this.modifyScreen(value);
+            const value = element.nodeName === 'BUTTON' ? element.firstElementChild!.textContent : element.textContent;
+            if (value)
+                this.modifyScreen(value);
         }
     }
 
@@ -54,7 +51,7 @@ export class Button extends HTMLElement {
             try {
                 pScreen.textContent = eval(operation.replace("x", "*"));
             } catch (error) {
-                pScreen.textContent = 'Syntax Error';
+                pScreen.textContent = this.SYNTAX_ERROR;
             }
         }
     }
@@ -73,7 +70,7 @@ export class Button extends HTMLElement {
             const textContent = pScreen.textContent;
             if (textContent) {
                 if (value === Operation.deleteValue && textContent !== '0') {
-                    if (pScreen.textContent === this.SYNTAX_ERROR) {
+                    if (this.validErrors(pScreen.textContent)) {
                         this.cleanScreenError();
                         return;
                     }
@@ -105,7 +102,7 @@ export class Button extends HTMLElement {
     }
 
     private addTextInScreen(pScreen: HTMLParagraphElement, textContent: string, value: string): void {
-        if (textContent && textContent === this.SYNTAX_ERROR) {
+        if (this.validErrors(textContent)) {
             this.cleanScreenError(value);
             return;
         }
@@ -160,24 +157,24 @@ export class Button extends HTMLElement {
     private validPointSymbol(symbol: string, initialPosition: number): boolean {
         if (symbol.charAt(symbol.length - 1) === Operation.point) {
             const value = symbol.slice(initialPosition, symbol.length - 1);
-            return (value.includes(Operation.point));
+            return value.includes(Operation.point);
         }
         return false;
     }
 
     private cleanScreenError(value?: string): void {
         const pScreen = this.getScreenElement();
-        if (pScreen) {
-            if (pScreen.textContent === this.SYNTAX_ERROR) {
-                pScreen.textContent = value ??= '0';
-            }
-        }
+        pScreen.textContent = value ??= '0';
     }
 
     private getScreenElement(): HTMLParagraphElement {
         const { firstElementChild: containerScreen } = this.screen;
         const { firstElementChild: pScreen } = containerScreen!;
         return pScreen as HTMLParagraphElement;
+    }
+
+    private validErrors(textContent: string | null): boolean {
+        return textContent === this.SYNTAX_ERROR || textContent === this.INFINITY;
     }
 
 }
