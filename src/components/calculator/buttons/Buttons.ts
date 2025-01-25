@@ -9,7 +9,7 @@ export class Button extends HTMLElement {
     private position = 0;
     private readonly SYNTAX_ERROR = 'Syntax Error';
 
-    private values: string[][] = [
+    private readonly values: string[][] = [
         ['7', '8', '9', 'DEL'],
         ['4', '5', '6', '+'],
         ['1', '2', '3', '-'],
@@ -30,8 +30,8 @@ export class Button extends HTMLElement {
         const buttonsOperation = this.querySelector<HTMLDivElement>(this.selector)!;
         const [reset, send] = this.querySelectorAll<HTMLButtonElement>('.buttons-container > div:last-child button');
         buttonsOperation.addEventListener('click', this);
-        reset.addEventListener('click', () => this.reset());
-        send.addEventListener('click', () => this.calculateResult());
+        reset.addEventListener('click', this);
+        send.addEventListener('click', this);
     }
 
     handleEvent(event: MouseEvent): void {
@@ -72,15 +72,19 @@ export class Button extends HTMLElement {
         if (pScreen) {
             const textContent = pScreen.textContent;
             if (textContent) {
-                if (value === 'DEL' && textContent !== '0') {
+                if (value === Operation.deleteValue && textContent !== '0') {
                     if (pScreen.textContent === this.SYNTAX_ERROR) {
                         this.cleanScreenError();
                         return;
                     }
                     this.deleteTextInScreen(pScreen);
-                    return;
+                } else if (value === Operation.reset) {
+                    this.reset();
+                } else if (value === Operation.result) {
+                    this.calculateResult();
+                } else {
+                    this.addTextInScreen(pScreen, textContent, value);
                 }
-                this.addTextInScreen(pScreen, textContent, value);
             }
         }
     }
@@ -164,7 +168,7 @@ export class Button extends HTMLElement {
     private cleanScreenError(value?: string): void {
         const pScreen = this.getScreenElement();
         if (pScreen) {
-            if (pScreen.textContent === 'Syntax Error') {
+            if (pScreen.textContent === this.SYNTAX_ERROR) {
                 pScreen.textContent = value ??= '0';
             }
         }

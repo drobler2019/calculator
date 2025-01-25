@@ -3,7 +3,10 @@ export enum Operation {
     subtraction = "-",
     division = "/",
     multiplication = "x",
-    point = "."
+    point = ".",
+    reset = "RESET",
+    result = "=",
+    deleteValue = "DEL"
 }
 
 export const operations = (): Operation[] =>
