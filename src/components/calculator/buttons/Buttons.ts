@@ -1,11 +1,12 @@
 import html from './buttons.html?raw';
 import './buttons.css';
 import { Screen } from '../screen/Screen';
-import { Operation } from '../../../util/SymbolOperation';
+import { Operation, operations } from '../../../util/SymbolOperation';
 
 export class Button extends HTMLElement {
 
     private selector = '.buttons-container > div:first-child';
+    private position = 0;
 
     private values: string[][] = [
         ['7', '8', '9', 'DEL'],
@@ -28,13 +29,7 @@ export class Button extends HTMLElement {
         const buttonsOperation = this.querySelector<HTMLDivElement>(this.selector)!;
         const [reset, send] = this.querySelectorAll<HTMLButtonElement>('.buttons-container > div:last-child button');
         buttonsOperation.addEventListener('click', this);
-        reset.addEventListener('click', () => {
-            const { firstElementChild: containerScreen } = this.screen;
-            const { firstElementChild: pScreen } = containerScreen!;
-            if (pScreen!.textContent) {
-                pScreen!.textContent = '0';
-            }
-        })
+        reset.addEventListener('click', () => this.reset());
     }
 
     handleEvent(event: MouseEvent): void {
@@ -50,6 +45,15 @@ export class Button extends HTMLElement {
         }
     }
 
+    private reset(): void {
+        const { firstElementChild: containerScreen } = this.screen;
+        const { firstElementChild: pScreen } = containerScreen!;
+        if (pScreen!.textContent) {
+            pScreen!.textContent = '0';
+            this.position = 0;
+        }
+    }
+
     private modifyScreen(value: string): void {
         const { firstElementChild: containerScreen } = this.screen;
 
@@ -60,7 +64,7 @@ export class Button extends HTMLElement {
                 const textContent = paragraphElement.textContent;
                 if (textContent) {
                     if (value === 'DEL' && textContent !== '0') {
-                        this.deleteTextInScreen(paragraphElement, textContent);
+                        this.deleteTextInScreen(paragraphElement);
                         return;
                     }
                     this.addTextInScreen(paragraphElement, textContent, value);
@@ -69,9 +73,17 @@ export class Button extends HTMLElement {
         }
     }
 
-    private deleteTextInScreen(pScreen: HTMLParagraphElement, textContent: string): void {
-        pScreen.textContent = textContent.slice(0, textContent.length - 1);
-        if (textContent.length === 1) {
+    private deleteTextInScreen(pScreen: HTMLParagraphElement): void {
+        pScreen.textContent = pScreen.textContent!.slice(0, pScreen.textContent!.length - 1);
+        if (this.position > 0) {
+            let [findSymbol] = operations().map(operation => pScreen.textContent!.lastIndexOf(operation));
+            if (findSymbol && findSymbol !== -1) {
+                this.position = findSymbol;
+            } else {
+                this.position = 0;
+            }
+        }
+        if (pScreen.textContent.length === 0) {
             pScreen.textContent = '0';
         }
     }
@@ -84,12 +96,15 @@ export class Button extends HTMLElement {
                 }
                 return;
             }
-            pScreen.textContent = value.toString();
+            pScreen.textContent = value;
         } else {
             if (this.validValue(value, textContent)) {
                 return;
             }
-            pScreen.textContent += value.toString();
+            pScreen.textContent += value;
+            if (this.validFormat(pScreen.textContent!)) {
+                this.deleteTextInScreen(pScreen);
+            }
         }
     }
 
@@ -109,6 +124,27 @@ export class Button extends HTMLElement {
     private validValue(newValue: string, lastValue: string): boolean {
         const lastPosition = lastValue.split("")[lastValue.length - 1];
         return !Number.isInteger(parseInt(lastPosition)) && !Number.isInteger(parseInt(newValue))
+    }
+
+    private validFormat(lastValue: string): boolean {
+        for (let x = this.position + 1; x < lastValue.length; x++) {
+            if (lastValue[x] !== Operation.point && !Number.isInteger(parseInt(lastValue[x]))) {
+                this.position = x;
+                break;
+            }
+        }
+        return this.validPointSymbol(lastValue, this.position);
+
+    }
+
+    private validPointSymbol(symbol: string, initialPosition: number): boolean {
+        if (symbol.charAt(symbol.length - 1) === Operation.point) {
+            const value = symbol.slice(initialPosition, symbol.length - 1);
+            if (value.includes(Operation.point)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
