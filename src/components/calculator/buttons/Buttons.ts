@@ -1,6 +1,7 @@
 import html from './buttons.html?raw';
 import './buttons.css';
 import { Screen } from '../screen/Screen';
+import { Operation } from '../../../util/SymbolOperation';
 
 export class Button extends HTMLElement {
 
@@ -25,7 +26,15 @@ export class Button extends HTMLElement {
 
     selectButton(): void {
         const buttonsOperation = this.querySelector<HTMLDivElement>(this.selector)!;
+        const [reset, send] = this.querySelectorAll<HTMLButtonElement>('.buttons-container > div:last-child button');
         buttonsOperation.addEventListener('click', this);
+        reset.addEventListener('click', () => {
+            const { firstElementChild: containerScreen } = this.screen;
+            const { firstElementChild: pScreen } = containerScreen!;
+            if (pScreen!.textContent) {
+                pScreen!.textContent = '0';
+            }
+        })
     }
 
     handleEvent(event: MouseEvent): void {
@@ -37,21 +46,50 @@ export class Button extends HTMLElement {
             } else {
                 value = element.textContent!;
             }
-            const textContent = this.screen.firstElementChild!.firstElementChild!.textContent;
-            if (textContent) {
-                if (textContent === '0') {
+            this.modifyScreen(value);
+        }
+    }
 
-                    if (!Number.isInteger(parseInt(value)))
-                        return;
+    private modifyScreen(value: string): void {
+        const { firstElementChild: containerScreen } = this.screen;
 
-                    this.screen.firstElementChild!.firstElementChild!.textContent = value.toString();
-                } else {
-                    if (this.validValue(value, textContent)) {
+        if (containerScreen) {
+            const { firstElementChild: pScreen } = containerScreen;
+            const paragraphElement = pScreen as HTMLParagraphElement;
+            if (paragraphElement) {
+                const textContent = paragraphElement.textContent;
+                if (textContent) {
+                    if (value === 'DEL' && textContent !== '0') {
+                        this.deleteTextInScreen(paragraphElement, textContent);
                         return;
                     }
-                    this.screen.firstElementChild!.firstElementChild!.textContent += value.toString();
+                    this.addTextInScreen(paragraphElement, textContent, value);
                 }
             }
+        }
+    }
+
+    private deleteTextInScreen(pScreen: HTMLParagraphElement, textContent: string): void {
+        pScreen.textContent = textContent.slice(0, textContent.length - 1);
+        if (textContent.length === 1) {
+            pScreen.textContent = '0';
+        }
+    }
+
+    private addTextInScreen(pScreen: HTMLParagraphElement, textContent: string, value: string): void {
+        if (textContent === '0') {
+            if (!Number.isInteger(parseInt(value))) {
+                if (value === Operation.point) {
+                    pScreen.textContent += value;
+                }
+                return;
+            }
+            pScreen.textContent = value.toString();
+        } else {
+            if (this.validValue(value, textContent)) {
+                return;
+            }
+            pScreen.textContent += value.toString();
         }
     }
 
