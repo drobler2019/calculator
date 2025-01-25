@@ -21,6 +21,15 @@
       border: none;
       box-shadow: var(--box-shadow) var(--grayish-orange-shadow);
     }
+
+    & button:active {
+      background-color: var(--grayish-red);
+    }
+
+    & button:nth-child(4):active {
+      background-color: var(--grayish-red);
+    }
+
     & p {
       font-size: 1.8rem;
       font-weight: bold;
@@ -52,6 +61,10 @@
       background-color: var(--red);
       color: var(--white);
       box-shadow: var(--box-shadow) var(--dark-red);
+    }
+
+    & button:active {
+      background-color: var(--grayish-red);
     }
   }
 }
