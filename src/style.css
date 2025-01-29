@@ -9,32 +9,67 @@
 }
 
 :root {
-  /*background*/
-  --very-dark-violet: hsl(268deg 75% 9%);
+  /*theme 1 *****************************************/
   --very-dark-desaturated-blue: hsl(222deg 26% 31%);
-  --very-dark-blue: hsl(198, 20%, 13%);
   --very-dark-desaturated-blue-toggle: hsl(223deg 31% 20%);
   --very-dark-desaturated-blue-screen: hsl(224deg 36% 15%);
 
-  /*color font*/
-  --white: hsl(0deg 0% 100%);
-  --very-dark-grayish-blue: hsl(221deg 14% 31%);
-
-  --max-width: 500px;
-  --border-radius: 10px;
-  --gap: 20px;
-
-  /*buttons*/
+  /*buttons theme 1*/
   --desaturated-dark-blue: hsl(225deg 21% 49%);
   --desaturated-dark-blue-shadow: hsl(224deg 28% 35%);
   --red: hsl(6deg 63% 50%);
-  --dark-red: hsl(6deg 70% 34%);
+  --dark-red-shadow: hsl(6deg 70% 34%);
   --light-grayish-orange: hsl(30deg 25% 89%);
   --grayish-orange-shadow: hsl(28deg 16% 65%);
-  --grayish-red: hsl(0deg 5% 81%);
 
+  /*text color theme 1*/
+  --white: hsl(0deg 0% 100%);
+  --very-dark-grayish-blue: hsl(221deg 14% 31%);
+
+  --very-dark-violet: hsl(268deg 75% 9%);
+  --very-dark-blue: hsl(198, 20%, 13%);
+  /************************************************/
+
+  /*theme 2 *****************************************/
+  --light-gray-main: hsl(0deg 0% 90%);
+  --grayish-red-toggle: hsl(0deg 5% 81%);
+  --very-light-gray-screen: hsl(0deg 0% 93%);
+
+  /*buttons theme 2*/
+  --dark-moderate-cyan: hsl(185, 42%, 37%);
+  --very-dark-cyan: hsl(185deg 58% 25%);
+  --orange-toggle: hsl(25deg 98% 40%);
+  --dark-orange-shadow: hsl(25deg 99% 27%);
+  --light-grayish-yellow: hsl(45deg 7% 89%);
+  --dark-grayish-orange-shadow: hsl(35, 11%, 61%);
+
+  /*text color theme 2*/
+  --very-dark-grayish-yellow: hsl(60deg 10% 19%);
+  --white: hsl(0deg 0% 100%);
+  /************************************************/
+
+  /*theme 3 *****************************************/
+  --very-dark-violet-main: hsl(268deg 75% 9%);
+  --very-dark-violet: hsl(268, 71%, 12%);
+
+  /*buttons theme 2*/
+  --dark-violet: hsl(281deg 89% 26%);
+  --vivid-magenta-shadow: hsl(285deg 91% 52%);
+  --pure-cyan-toggle: hsl(176deg 100% 44%);
+  --soft-cyan-shadow: hsl(177deg 92% 70%);
+  --very-dark-violet: hsl(268deg 47% 21%);
+  --dark-magenta-shadow: hsl(290deg 70% 36%);
+
+  /*text color theme 2*/
+  --light-yellow: hsl(52deg 100% 62%);
+  --very-dark-blue: hsl(198deg 20% 13%);
+  /************************************************/
+
+  /*Generic styles*/
+  --max-width: 500px;
+  --border-radius: 10px;
+  --gap: 20px;
   --box-shadow: 0px 5px 1px 1px;
-
   --spacing: 30px;
 }
 

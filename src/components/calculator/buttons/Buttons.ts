@@ -130,6 +130,9 @@ export class Button extends HTMLElement {
         this.values.forEach(buttons => {
             buttons.forEach(value => {
                 const button = document.createElement('button');
+                if (value === Operation.deleteValue) {
+                    button.className = Operation.deleteValue.toLocaleLowerCase();
+                }
                 const p = document.createElement('p');
                 p.textContent = value;
                 button.append(p);
