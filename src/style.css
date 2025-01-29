@@ -71,13 +71,16 @@
   --gap: 20px;
   --box-shadow: 0px 5px 1px 1px;
   --spacing: 30px;
+  --font-family: "League Spartan", serif;
+  --font-size-button-values: 2.3rem;
+  --font-size-button-reset-result: 1.5rem;
 }
 
 body {
   block-size: 100vh;
   background-color: var(--very-dark-desaturated-blue);
   color: var(--white);
-  font-family: "League Spartan", serif;
+  font-family: var(--font-family);
   align-content: center;
   padding: 20px;
 }

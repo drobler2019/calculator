@@ -4,6 +4,9 @@
   border-radius: var(--border-radius);
   padding: var(--spacing);
   margin: auto;
+  & p {
+    font-family: var(--font-family);
+  }
 }
 
 /*styles buttons values*/
@@ -13,8 +16,9 @@
   grid-auto-rows: 60px;
   gap: var(--gap);
   & p {
-    font-size: 1.8rem;
+    font-size: var(--font-size-button-values);
     font-weight: bold;
+    color: var(--very-dark-grayish-blue);
   }
 }
 
@@ -32,15 +36,18 @@ button {
   box-shadow: var(--box-shadow) var(--desaturated-dark-blue-shadow);
 }
 
-.del:active {
-  background-color: var(--grayish-red);
-}
-
 button:active {
   background-color: var(--light-grayish-orange);
 }
 
 /*styles buttons reset and calculate*/
+
+:is(.del, .reset, .calculate) {
+  & p {
+    font-size: var(--font-size-button-reset-result);
+    color: var(--white);
+  }
+}
 
 .buttons-container-calculate {
   margin-block-start: var(--spacing);
@@ -61,13 +68,11 @@ button:active {
 
 .reset {
   background-color: var(--desaturated-dark-blue);
-  color: var(--white);
   box-shadow: var(--box-shadow) var(--desaturated-dark-blue-shadow);
 }
 
 .calculate {
   background-color: var(--red);
-  color: var(--white);
   box-shadow: var(--box-shadow) var(--dark-red-shadow);
 }
 
