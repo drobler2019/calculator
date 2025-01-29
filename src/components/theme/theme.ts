@@ -1,4 +1,4 @@
-import { ThemeCount } from '../../util/Theme';
+import { ThemeCount } from '../../util/ConstantsTheme';
 import './theme.css';
 import template from './theme.html?raw';
 
@@ -25,6 +25,10 @@ export class Theme extends HTMLElement {
                 }
                 const child = this.toggle.firstElementChild! as HTMLDivElement;
                 this.aux = 30 * this.countTheme.count;
+                if (child.style.transform === 'translateX(60px)') {
+                    this.aux = 0;
+                    this.countTheme.count = 0;
+                }
                 child.style.transform = `translateX(${this.aux}px)`;
                 if (this.countTheme.count === 0) {
                     this.countTheme.isPositive = true;
