@@ -14,3 +14,17 @@
     font-weight: bold;
   }
 }
+
+.screen-theme-2 {
+  background-color: var(--very-light-gray-screen);
+  & p {
+    color: var(--very-dark-grayish-yellow);
+  }
+}
+
+.screen-theme-3 {
+  background-color: var(--very-dark-violet);
+  & p {
+    color: var(--light-yellow);
+  }
+}

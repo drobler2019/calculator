@@ -1,12 +1,20 @@
 .buttons-container {
   max-inline-size: var(--max-width);
-  background-color: hsl(223, 31%, 20%);
+  background-color: var(--very-dark-desaturated-blue-toggle);
   border-radius: var(--border-radius);
   padding: var(--spacing);
   margin: auto;
   & p {
     font-family: var(--font-family);
   }
+}
+
+.buttons-container-theme-2 {
+  background-color: var(--grayish-red-toggle);
+}
+
+.buttons-container-theme-3 {
+  background-color: var(--very-dark-violet);
 }
 
 /*styles buttons values*/
@@ -30,14 +38,23 @@ button {
   box-shadow: var(--box-shadow) var(--grayish-orange-shadow);
 }
 
+.button-theme-2 {
+  background-color: var(--light-grayish-yellow);
+  box-shadow: var(--box-shadow) var(--dark-grayish-orange-shadow);
+}
+
+.button-theme-3 {
+  background-color: var(--very-dark-violet);
+  box-shadow: var(--box-shadow) var(--dark-magenta-shadow);
+  & p {
+    color: var(--light-yellow);
+  }
+}
+
 .del {
   background-color: var(--desaturated-dark-blue);
   color: var(--white);
   box-shadow: var(--box-shadow) var(--desaturated-dark-blue-shadow);
-}
-
-button:active {
-  background-color: var(--light-grayish-orange);
 }
 
 /*styles buttons reset and calculate*/
@@ -78,4 +95,24 @@ button:active {
 
 .calculate:active {
   background-color: var(--light-grayish-orange);
+}
+
+.calculate-theme-2 {
+  background-color: var(--orange-toggle);
+  box-shadow: var(--box-shadow) var(--dark-orange-shadow);
+}
+
+.calculate-theme-3 {
+  background-color: var(--pure-cyan-toggle);
+  box-shadow: var(--box-shadow) var(--soft-cyan-shadow);
+}
+
+.del-theme-2 {
+  background-color: var(--dark-moderate-cyan);
+  box-shadow: var(--box-shadow) var(--very-dark-cyan);
+}
+
+.del-theme-3 {
+  background-color: var(--dark-violet);
+  box-shadow: var(--box-shadow) var(--vivid-magenta-shadow);
 }

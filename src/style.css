@@ -52,7 +52,7 @@
   --very-dark-violet-main: hsl(268deg 75% 9%);
   --very-dark-violet: hsl(268, 71%, 12%);
 
-  /*buttons theme 2*/
+  /*buttons theme 3*/
   --dark-violet: hsl(281deg 89% 26%);
   --vivid-magenta-shadow: hsl(285deg 91% 52%);
   --pure-cyan-toggle: hsl(176deg 100% 44%);
@@ -60,7 +60,7 @@
   --very-dark-violet: hsl(268deg 47% 21%);
   --dark-magenta-shadow: hsl(290deg 70% 36%);
 
-  /*text color theme 2*/
+  /*text color theme 3*/
   --light-yellow: hsl(52deg 100% 62%);
   --very-dark-blue: hsl(198deg 20% 13%);
   /************************************************/
@@ -83,4 +83,14 @@ body {
   font-family: var(--font-family);
   align-content: center;
   padding: 20px;
+}
+
+.theme-2 {
+  background-color: var(--light-gray-main);
+  color: var(--very-dark-grayish-yellow);
+}
+
+.theme-3 {
+  background-color: var(--very-dark-violet-main);
+  color: var(--light-yellow);
 }
