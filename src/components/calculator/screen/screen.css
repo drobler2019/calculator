@@ -7,8 +7,8 @@
   margin-block: var(--spacing);
   padding-inline: 20px;
   display: flex;
-  justify-content: end;
   align-items: center;
+  overflow-x: scroll;
   & > p {
     font-size: 2.5rem;
     font-weight: bold;
